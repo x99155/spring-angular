@@ -7,6 +7,7 @@
 
             <input matInput (change)="filterStudent($event)" style="margin-bottom: 10px;">
 
+            <!--Methode Angular material-->
             <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z1">
 
                 <!-- ID Column -->
@@ -46,6 +47,41 @@
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
             </table>
+
+            <!--Methode sans Angular material-->
+            <!--
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>FisrtName</th>
+                        <th>LastName</th>
+                        <th>Code</th>
+                        <th>Payment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let student of students">
+                        <td>{{student.id}}</td>
+                        <td>{{student.firstName}}</td>
+                        <td>{{student.lastName}}</td>
+                        <td>{{student.code}}</td>
+                        <td>{{student.payment}}</td>
+                    </tr>
+
+                    OU ENCORE (à partir de angular 16)
+                    @for (student of students; track student){
+                        <tr>
+                            <td>{{student.id}}</td>
+                            <td>{{student.firstName}}</td>
+                            <td>{{student.lastName}}</td>
+                            <td>{{student.code}}</td>
+                            <td>{{student.payment}}</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            -->
 
             <mat-paginator [pageSizeOptions]="[10, 50, 100]"></mat-paginator>
 

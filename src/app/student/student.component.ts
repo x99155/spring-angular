@@ -4,6 +4,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort, Sort, MatSortModule} from '@angular/material/sort';
 import { Router } from '@angular/router';
 import { StudentService } from '../service/student/student.service';
+import { Student } from '../model/student.model';
 
 @Component({
   selector: 'app-student',
@@ -26,9 +27,10 @@ export class StudentComponent implements OnInit{
 
   ngOnInit(): void {
     this.studentService.getAllStudents()
-      .subscribe({
+      .subscribe({ // je souscris au flux de données que je stocke dans la variable 'data'
         next: data => {
-          this.students = data;
+          this.students = data; // je stocke les données de 'data' dans 'students
+          // data binding
           this.dataSource = new MatTableDataSource(this.students);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
@@ -45,8 +47,9 @@ export class StudentComponent implements OnInit{
     this.dataSource.filter = value;
   }
 
-  getPayment(student: any): void {
-    this.router.navigateByUrl('/admin/payment');
+
+  public getPayment(student: Student): void {
+    this.router.navigateByUrl(`/admin/student-details/${student.code}`); // j'envoie le code à cette route
   }
 
   

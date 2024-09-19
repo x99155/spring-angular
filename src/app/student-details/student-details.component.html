@@ -1,0 +1,36 @@
+<div class="container">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Payment details for student {{ studentPayment[0]?.student?.firstName }} </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Firstname</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Type</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (student of studentPayment; track student){
+                        <tr>
+                            <td>{{student.id}}</td>
+                            <td>{{student.student.firstName}}</td>
+                            <td>{{ student.date | date:'dd/MM/yyyy' }}</td>
+                            <td>{{student.status}}</td>
+                            <td>{{student.type}}</td>
+                            <td>{{student.amount}}</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+              
+
+        </mat-card-content>
+    </mat-card>
+</div>

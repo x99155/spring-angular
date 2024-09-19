@@ -16,6 +16,7 @@ import { LoadPaymentComponent } from './load-payment/load-payment.component';
 import { LoadStudentComponent } from './load-student/load-student.component'; 
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { StudentDetailsComponent } from './student-details/student-details.component';
 
 
 
@@ -30,7 +31,8 @@ import { HttpClientModule } from '@angular/common/http';
     StudentComponent,
     PaymentComponent,
     LoadPaymentComponent,
-    LoadStudentComponent
+    LoadStudentComponent,
+    StudentDetailsComponent
   ],
   imports: [
     BrowserModule,
