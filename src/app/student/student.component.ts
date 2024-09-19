@@ -3,50 +3,42 @@ import { MatTableDataSource } from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort, Sort, MatSortModule} from '@angular/material/sort';
 import { Router } from '@angular/router';
+import { StudentService } from '../service/student/student.service';
 
 @Component({
   selector: 'app-student',
   templateUrl: './student.component.html',
   styleUrl: './student.component.css'
 })
-export class StudentComponent implements OnInit, AfterViewInit{
+export class StudentComponent implements OnInit{
 
   public students: any;
   public dataSource: any;
-  public displayedColumns: string[] = ['id', 'firstName', 'lastName', 'payment'];
+  public displayedColumns: string[] = ['id', 'firstName', 'lastName', 'code', 'payment'];
 
   public keyword: any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private studentService: StudentService) {}
   
 
   ngOnInit(): void {
-    this.students = [];
-
-    for (let i: number = 1; i < 100; i++) {
-      this.students.push(
-        {
-          id: i,
-          firstName: Math.random().toString(20),
-          lastName: Math.random().toString(20)
+    this.studentService.getAllStudents()
+      .subscribe({
+        next: data => {
+          this.students = data;
+          this.dataSource = new MatTableDataSource(this.students);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        },
+        error: err => {
+          console.log(err);
         }
-      );
-      
-    }
-
-    // MatTableDataSource est une classe fournie par Angular Material pour faciliter la gestion et l'affichage des données dans les tables (mat-table)
-    this.dataSource = new MatTableDataSource(this.students);
+      })
   }
 
-
-  ngAfterViewInit(): void {
-    
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
 
   filterStudent(event: Event): void {
     let value: string = (event.target as HTMLInputElement).value;

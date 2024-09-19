@@ -15,6 +15,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { LoadPaymentComponent } from './load-payment/load-payment.component';
 import { LoadStudentComponent } from './load-student/load-student.component'; 
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -36,6 +37,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     MaterialModule, // Utilisez le module personnalisé
     ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
     provideAnimationsAsync()
